@@ -1,0 +1,94 @@
+
+➜  minshelv git:(master) ✗ ./minishell
+--> minishell : export > f
+➜  minshelv git:(master) ✗
+
+declare -x COLORTERM="truecolor"
+declare -x COMMAND_MODE="unix2003"
+declare -x GIT_ASKPASS="/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh"
+declare -x HOME="/Users/aennaqad"
+declare -x HOMEBREW_CACHE="/tmp/aennaqad/Homebrew/Caches"
+declare -x HOMEBREW_TEMP="/tmp/aennaqad/Homebrew/Temp"
+declare -x LANG="en_US.UTF-8"
+declare -x LESS="-R"
+declare -x LOGNAME="aennaqad"
+declare -x LSCOLORS="Gxfxcxdxbxegedabagacad"
+declare -x LS_COLORS="di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
+declare -x LaunchInstanceID="058F2373-A8CA-4A52-9163-1A83E87BE3EC"
+declare -x MallocNanoZone="0"
+declare -x OLDPWD="/Users/aennaqad/Desktop/minshelv"
+declare -x ORIGINAL_XDG_CURRENT_DESKTOP="undefined"
+declare -x PAGER="less"
+declare -x PATH="/Users/aennaqad/goinfre/homebrew/bin:/Users/aennaqad/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin"
+declare -x PWD="/Users/aennaqad/Desktop/minshelv"
+declare -x SECURITYSESSIONID="186a8"
+declare -x SHELL="/bin/zsh"
+declare -x SHLVL="1"
+declare -x SSH_AUTH_SOCK="/private/tmp/com.apple.launchd.uQv9surJvu/Listeners"
+declare -x TERM="xterm-256color"
+declare -x TERM_PROGRAM="vscode"
+declare -x TERM_PROGRAM_VERSION="1.89.1"
+declare -x TMPDIR="/var/folders/zz/zyxvpxvq6csfxvn_n000cltc0034yl/T/"
+declare -x USER="aennaqad"
+declare -x USER_ZDOTDIR="/Users/aennaqad"
+declare -x VSCODE_GIT_ASKPASS_EXTRA_ARGS
+declare -x VSCODE_GIT_ASKPASS_MAIN="/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js"
+declare -x VSCODE_GIT_ASKPASS_NODE="/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Plugin).app/Contents/MacOS/Code Helper (Plugin)"
+declare -x VSCODE_GIT_IPC_HANDLE="/var/folders/zz/zyxvpxvq6csfxvn_n000cltc0034yl/T/vscode-git-177bfb573e.sock"
+declare -x VSCODE_INJECTION="1"
+declare -x XPC_FLAGS="0x0"
+declare -x XPC_SERVICE_NAME="0"
+declare -x ZDOTDIR="/Users/aennaqad"
+declare -x ZSH="/Users/aennaqad/.oh-my-zsh"
+declare -x _="/Users/aennaqad/Desktop/minshelv/./minishell"
+declare -x __CF_USER_TEXT_ENCODING="0x193D3:0x0:0x0"
+[?2004h--> minishell : ssjjshs
+[?2004l
+minishell: ssjjshs: command not found
+[?2004h--> minishell : sjshjsh
+--> minishell : [?2004l
+
+
+--------------------------------
+
+COMMAND     PID     USER   FD   TYPE DEVICE SIZE/OFF                NODE NAME
+minishell 14246 aennaqad  cwd    DIR    1,9      476             5880035 /Users/aennaqad/Desktop/minshelv
+minishell 14246 aennaqad  txt    REG    1,9    91976             5880363 /Users/aennaqad/Desktop/minshelv/minishell
+minishell 14246 aennaqad  txt    REG    1,9   275776             5741614 /Users/aennaqad/.brew/Cellar/readline/8.2.13/lib/libreadline.8.2.dylib
+minishell 14246 aennaqad  txt    REG    1,4  1572480 1152921500312412793 /usr/lib/dyld
+minishell 14246 aennaqad    0u   CHR   16,8     0t12                 715 /dev/ttys008
+minishell 14246 aennaqad    1u   CHR   16,8   0t5022                 715 /dev/ttys008
+minishell 14246 aennaqad    2u   CHR   16,8   0t5022                 715 /dev/ttys008
+minishell 14246 aennaqad    3r   REG    1,4        0            31322670 /private/tmp/file_2024
+minishell 14246 aennaqad    4r   REG    1,4        0            31322671 /private/tmp/file_2025
+minishell 14246 aennaqad    5r   REG    1,4        0            31322670 /private/tmp/file_2024
+minishell 14246 aennaqad    6r   REG    1,4        0            31322671 /private/tmp/file_2025
+COMMAND     PID     USER   FD   TYPE DEVICE SIZE/OFF                NODE NAME
+minishell 14246 aennaqad  cwd    DIR    1,9      476             5880035 /Users/aennaqad/Desktop/minshelv
+minishell 14246 aennaqad  txt    REG    1,9    91976             5880363 /Users/aennaqad/Desktop/minshelv/minishell
+minishell 14246 aennaqad  txt    REG    1,9   275776             5741614 /Users/aennaqad/.brew/Cellar/readline/8.2.13/lib/libreadline.8.2.dylib
+minishell 14246 aennaqad  txt    REG    1,4  1572480 1152921500312412793 /usr/lib/dyld
+minishell 14246 aennaqad    0u   CHR   16,8     0t12                 715 /dev/ttys008
+minishell 14246 aennaqad    1u   CHR   16,8   0t5022                 715 /dev/ttys008
+minishell 14246 aennaqad    2u   CHR   16,8   0t5022                 715 /dev/ttys008
+minishell 14246 aennaqad    3r   REG    1,4        0            31322670 /private/tmp/file_2024
+minishell 14246 aennaqad    4r   REG    1,4        0            31322671 /private/tmp/file_2025
+minishell 14246 aennaqad    5r   REG    1,4        0            31322670 /private/tmp/file_2024
+minishell 14246 aennaqad    6r   REG    1,4        0            31322671 /private/tmp/file_2025
+COMMAND     PID     USER   FD   TYPE DEVICE SIZE/OFF                NODE NAME
+
+?➜  minshelv ./minishell
+--> minishell : << ''
+>
+--> minishell : cat << ''
+>
+minishell: cat: command not found
+--> minishell : 
+
+
+bash-3.2$ bash djdhjdjdjhd
+bash: bash: No such file or directory
+bash-3.2$ 
+--> minishell : ""
+--> minishell : ''
+--> minishell : 
