@@ -192,6 +192,7 @@ t_cmd		*the_input(char *line, t_env *env);
 void		create_add_likedlist(t_tokens **head,
 				char *val, char *type, int flag);
 t_redr		*create_red_node(char *red, char *type);
+void	printList_tcmd(t_cmd *lst);
 void		next_skip_spaces(t_tokens **curr);
 int			handle_ambguis(t_tokens *prev, char *to_exp, int c);
 int			ft_isalnum(int c);

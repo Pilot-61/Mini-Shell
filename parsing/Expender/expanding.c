@@ -83,7 +83,9 @@ char	*expand_dlr_args(char *arg, char **env)
 	t_var	var;
 
 	intial_data(&var);
-	if (*arg == '$' && *(arg + 1) == '1' && *(arg + 2) != '\0')
+	if (*arg == '$' && (*(arg + 1) >= '1' 
+			&& *(arg + 1) <= '9') 
+			&& *(arg + 2) != '\0')
 		arg += 2;
 	if (!ft_strncmp(arg, "$", 2))
 		return (var.exp.final_arg = ft_strdup("$"), var.exp.final_arg);

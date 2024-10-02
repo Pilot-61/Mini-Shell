@@ -6,24 +6,13 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:27:18 by aennaqad          #+#    #+#             */
-/*   Updated: 2024/10/01 19:04:27 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/02 13:47:27 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 
-void print_cmd_list(t_cmd *cmd_list)
-		{
-			t_cmd *current = cmd_list;
-			while (current != NULL)
-			{
-				printf("Command: %s\n", current->cmd);
-				printf("one: %s\n", current->args[0]);
-				printf("two: %s\n", current->args[1]);
-				current = current->next;
-			}
-		}
 
 int	main(int ac, char **av, char **env)
 {
@@ -49,6 +38,7 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		}
 		g_sig_v = 1;
+		// printList_tcmd(var.cmd_list);
 		tcgetattr(0, &var.term);
 		exec(var.cmd_list, &var.envp);
 		tcsetattr(1, 0, &var.term);

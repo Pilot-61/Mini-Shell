@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 07:25:18 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/09/30 19:23:56 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/02 13:46:12 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void	exec_cmd(t_cmd *command, char **env, t_env *envp)
 {
 	if (command->cmd == NULL)
 	{
-		printf("minishell: : command not found\n");
 		ft_exit_status(1, 1);
 		exit(1);
 	}

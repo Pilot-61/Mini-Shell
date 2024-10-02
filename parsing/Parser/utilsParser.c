@@ -18,7 +18,7 @@ void	joined(t_var **var, t_tokens *curr, char **env)
 	char	*temp;
 
 	if ((*var)->joined_data
-		&& expand_dlr_args((*var)->joined_data, env)[0] == '\0')
+		&& expand_dlr_args((*var)->joined_data, env)[0] == '\x03')
 		(*var)->joined_data = ft_strdup("");
 	temp = NULL;
 	if ((*var)->in_sngl_qts)

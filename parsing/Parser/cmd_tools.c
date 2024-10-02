@@ -20,11 +20,17 @@ t_cmd	*new_cmd_node(char **content, t_redr *head_red)
 	if (!node)
 		return (NULL);
 	if (content[0] == NULL)
+	{
 		node->args = NULL;
+		node->cmd = NULL;
+	}
 	else
+	{
 		node->args = content;
+		node->cmd = content[0];
+
+	}
 	node->redirections = head_red;
-	node->cmd = content[0];
 	node->next = NULL;
 	return (node);
 }
