@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aennaqad <aennaqad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:28:52 by aennaqad          #+#    #+#             */
-/*   Updated: 2024/09/28 22:25:09 by aennaqad         ###   ########.fr       */
+/*   Updated: 2024/10/03 21:13:03 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	open_close_quote(char *line)
 	}
 	if (var.double_counter % 2 != 0 || var.single_counter % 2 != 0)
 	{
-		printf("syntax error\n");
+		ft_putstr_fd("syntax error\n", 2);
 		return (0);
 	}
 	return (1);

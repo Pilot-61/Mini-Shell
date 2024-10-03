@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aennaqad <aennaqad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 22:00:32 by aennaqad          #+#    #+#             */
-/*   Updated: 2024/09/28 22:02:38 by aennaqad         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:49:45 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_tokens	*copy_node(t_tokens *node)
 	new_node = ft_malloc((sizeof(t_tokens)), 1);
 	if (!new_node)
 	{
-		printf("Failed to allocate memory for new node.\n");
+		ft_putstr_fd("Failed to allocate memory for new node.\n", 2);
 		return (NULL);
 	}
 	if (node->flag == 7 || node->flag == 8)

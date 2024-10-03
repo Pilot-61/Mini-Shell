@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:57:26 by aennaqad          #+#    #+#             */
-/*   Updated: 2024/10/01 19:28:18 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:49:16 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ void	handle_signal(int sig)
 {
 	(void)sig;
 	if (sig == SIGINT)
+	{
 		close(0);
+		g_sig_v = 1;
+	}
 }
 
 void	expand_her(char *l, char **env, int fd)
@@ -52,10 +55,9 @@ void	handle_file(t_tokens **curr, int *fd, int *i, char **env)
 	next_skip_spaces(curr);
 	while ('X')
 	{
-		*fd = open(f_name, O_RDONLY, 0777);
-		if (*fd == -1)
+		if (access(f_name, F_OK) == -1)
 		{
-			*fd = open(f_name, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+			*fd = open(f_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 			if (*fd == -1)
 				err_exit("open");
 			break ;
@@ -71,7 +73,7 @@ void	handle_file(t_tokens **curr, int *fd, int *i, char **env)
 	close(*fd);
 }
 
-t_tokens	*parse_heredock(t_tokens *line, char **env)
+void	parse_heredock(t_tokens *line, char **env)
 {
 	int			fd;
 	int			i;
@@ -82,17 +84,11 @@ t_tokens	*parse_heredock(t_tokens *line, char **env)
 	signal(SIGINT, handle_signal);
 	while (curr)
 	{
-		while (curr)
-		{
-			if (!ft_strncmp(curr->type, "HEREDOC", 7))
-				handle_file(&curr, &fd, &i, env);
-			if (curr && curr->flag == 2)
-				break ;
-			if (curr)
-				curr = curr->next;
-		}
-		if (curr && curr->flag == 2)
+		if (g_sig_v == 1)
+			break ;
+		if (!ft_strncmp(curr->type, "HEREDOC", 7))
+			handle_file(&curr, &fd, &i, env);
+		if (curr)
 			curr = curr->next;
 	}
-	return (line);
 }

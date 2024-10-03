@@ -6,11 +6,19 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 23:43:08 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/09/28 02:26:20 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:18:30 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+void	cd_error(char *temp)
+{
+	ft_putstr_fd("minishell: cd:", 2);
+	ft_putstr_fd(temp, 2);
+	ft_putstr_fd(": No such file or directory\n", 2);
+	ft_exit_status(1, 1);
+}
 
 void	change_dir(char *temp, t_env **envp)
 {
@@ -19,7 +27,7 @@ void	change_dir(char *temp, t_env **envp)
 
 	if (getcwd(old_pwd, sizeof(old_pwd)) == NULL)
 	{
-		printf("PLAYZA: cd: invalid path\n");
+		ft_putstr_fd("minishell: cd: invalid path\n", 2);
 		chdir(temp);
 		if (getcwd(new_pwd, sizeof(new_pwd)) == NULL)
 			return ((void)ft_exit_status(1, 1));
@@ -30,10 +38,7 @@ void	change_dir(char *temp, t_env **envp)
 	if (temp == NULL || *temp == '\0')
 		temp = getenv("HOME");
 	if (chdir(temp) != 0)
-	{
-		printf("PLAYZA: cd: %s: No such file or directory\n", temp);
-		return ((void)ft_exit_status(1, 1));
-	}
+		return (cd_error(temp));
 	if (getcwd(new_pwd, sizeof(new_pwd)) == NULL)
 		return ((void)ft_exit_status(1, 1));
 	update_env(envp, "OLDPWD", old_pwd);

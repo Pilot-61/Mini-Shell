@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:46:59 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/10/01 19:49:15 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:43:18 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	cprocess(t_cmd *current_cmd, int p_pipe, int p_fd[2], t_env *env)
 {
+	signal(SIGQUIT, SIG_DFL);
 	if (p_pipe != STDIN_FILENO)
 	{
 		dup2(p_pipe, STDIN_FILENO);
@@ -51,7 +52,11 @@ void	wait_for_child_processes(int command_count, int pid)
 		if (WIFEXITED(status))
 			status = WEXITSTATUS(status);
 		else if (WIFSIGNALED(status))
+		{
 			status = WTERMSIG(status) + 128;
+			if (WTERMSIG(status) == 3)
+				ft_putstr_fd("Quit: 3\n", 2);
+		}
 		ft_exit_status(status, 1);
 	}
 	while (i < command_count - 1)
@@ -61,39 +66,39 @@ void	wait_for_child_processes(int command_count, int pid)
 	}
 }
 
-void	err_exit(char *msg)
+void	ff(char *msg, int *j)
 {
-	perror(msg);
-	exit(EXIT_FAILURE);
+	if (*j == 1)
+		perror(msg);
+	*j = 0;
+	return ;
 }
 
-void	exec_pip(t_cmd *commands, int command_count, t_env *env)
+void	exec_pip(t_cmd *commands, int command_count, t_env *env, int *flag)
 {
-	int		i;
-	int		p_fd[2];
-	int		p_pipe;
-	pid_t	pid;
 	t_cmd	*current_cmd;
+	t_var	v;
 
-	(1) && (i = -1, p_pipe = STDIN_FILENO, current_cmd = commands, 0);
-	while (++i < command_count)
+	(1) && (v.i = -1, v.p_pipe = STDIN_FILENO, current_cmd = commands, 0);
+	while (++v.i < command_count)
 	{
-		if (i < command_count - 1 && pipe(p_fd) == -1)
+		if (v.i < command_count - 1 && pipe(v.p_fd) == -1)
 			err_exit("pipe");
-		pid = fork();
-		if (pid == -1)
-			(1) && (dup2(STDIN_FILENO, p_fd[0]), dup2(STDOUT_FILENO, p_fd[1]),
-				close(p_fd[0]), close(p_fd[1]), err_exit("fork"), 0);
-		if (pid == 0)
-			cprocess(current_cmd, p_pipe, p_fd, env);
+		v.pid = fork();
+		if (v.pid == -1)
+			(1) && (dup2(STDIN_FILENO, v.p_fd[0]),
+				dup2(STDOUT_FILENO, v.p_fd[1]),
+				close(v.p_fd[0]), close(v.p_fd[1]), ff("fork", flag), 0);
+		if (v.pid == 0)
+			cprocess(current_cmd, v.p_pipe, v.p_fd, env);
 		else
 		{
-			if (i > 0)
-				close(p_pipe);
-			if (i < command_count - 1)
-				(1) && (close(p_fd[1]), p_pipe = p_fd[0], 0);
+			if (v.i > 0)
+				close(v.p_pipe);
+			if (v.i < command_count - 1)
+				(1) && (close(v.p_fd[1]), v.p_pipe = v.p_fd[0], 0);
 		}
 		current_cmd = current_cmd->next;
 	}
-	wait_for_child_processes(command_count, pid);
+	wait_for_child_processes(command_count, v.pid);
 }

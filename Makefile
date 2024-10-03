@@ -6,12 +6,12 @@
 #    By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/13 16:24:40 by aennaqad          #+#    #+#              #
-#    Updated: 2024/10/01 20:23:04 by mes-salh         ###   ########.fr        #
+#    Updated: 2024/10/03 22:51:51 by mes-salh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS =  -Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS =  -Wall -Werror -Wextra #-fsanitize=address -g
 # -fsanitize=address -g
 RM = rm -rf
 SRCS = 	parsing/syntaxe_cheks/utils_libft.c \
@@ -32,7 +32,7 @@ SRCS = 	parsing/syntaxe_cheks/utils_libft.c \
 			parsing/Lexer/toknizer.c \
 			parsing/Expender/utils_expander.c \
  			parsing/Expender/expanding.c \
-			parsing/mol_lparsing.c \
+			parsing/f_parsing.c \
 			parsing/signals_handle/signals_minishell.c \
 			execution/built-in/built_in.c execution/built-in/helpers.c\
 			execution/built-in/pwd.c \
@@ -41,7 +41,7 @@ SRCS = 	parsing/syntaxe_cheks/utils_libft.c \
 			execution/built-in/export.c execution/built-in/unset.c execution/built-in/exit.c \
 			execution/exec/exec.c execution/exec/helpers.c execution/exec/pipex.c execution/exec/helpers2.c execution/execution.c \
 			execution/exec/redir.c execution/exec/helpers3.c execution/exec/safe_syscall.c  execution/built-in/export2.c execution/tools.c \
-			execution/built-in/export_tools.c
+			execution/built-in/export_tools.c execution/exec/helpers4.c
 
 # Object files
 OBJS = $(SRCS:.c=.o)

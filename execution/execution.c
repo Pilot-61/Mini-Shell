@@ -6,18 +6,25 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:03:37 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/09/30 19:21:38 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/03 16:18:13 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	write(fd, s, ft_strlen(s));
+}
 
 void	exec(t_cmd *cmd_list, t_env **envp)
 {
 	t_cmd		*current_cmd;
 	int			cmds;
 	t_control	control;
+	int			flag;
 
+	flag = 1;
 	init_control(&control);
 	cmds = command_count(cmd_list);
 	current_cmd = cmd_list;
@@ -30,7 +37,7 @@ void	exec(t_cmd *cmd_list, t_env **envp)
 		return ;
 	}
 	else
-		exec_pip(cmd_list, cmds, *envp);
+		exec_pip(cmd_list, cmds, *envp, &flag);
 	close(control.old_stdin);
 	close(control.old_stdout);
 }

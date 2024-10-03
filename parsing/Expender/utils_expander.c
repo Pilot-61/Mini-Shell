@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 16:15:00 by aennaqad          #+#    #+#             */
-/*   Updated: 2024/10/01 19:30:20 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:50:19 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ void	intial_data(t_var *var)
 int	handle_herdoc_del(t_tokens **curr, char **env, int fd, char *file_name)
 {
 	char	*l;
-	// char	*exapned_l;
 
-	// exapned_l = NULL;
 	l = NULL;
 	if ((*curr) && ((*curr)->flag == 0 || (*curr)->flag == 550))
 	{

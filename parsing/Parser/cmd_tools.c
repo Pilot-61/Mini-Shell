@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:50:44 by aennaqad          #+#    #+#             */
-/*   Updated: 2024/09/27 21:22:53 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:50:31 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_cmd	*new_cmd_node(char **content, t_redr *head_red)
 	{
 		node->args = content;
 		node->cmd = content[0];
-
 	}
 	node->redirections = head_red;
 	node->next = NULL;

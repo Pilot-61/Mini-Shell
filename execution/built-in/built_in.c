@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 00:27:13 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/10/01 18:53:50 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/03 20:40:00 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	is_buit_in(t_cmd *c, t_env **envp)
 		return (change_dir(arg, envp), 1);
 	else if (ft_strcmp(cmd, "export") == 0)
 	{
-		if (arg == NULL || *arg == '\0')
+		if (c->args[1] == NULL)
 			return (export_notargs(envp), 1);
 		else
 			return (export(envp, &c->args[1]), 1);

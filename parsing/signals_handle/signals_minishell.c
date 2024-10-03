@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 17:04:32 by aennaqad          #+#    #+#             */
-/*   Updated: 2024/09/30 19:17:45 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/03 21:12:38 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	handle_sig_child(int a)
 	{
 		if (a == SIGQUIT)
 		{
-			dprintf(1, "Quit : 3\n");
+			ft_putstr_fd("Quit : 3\n", 2);
 		}
 		if (a == SIGINT)
 		{

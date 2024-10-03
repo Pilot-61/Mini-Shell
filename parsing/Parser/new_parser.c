@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aennaqad <aennaqad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:50:06 by aennaqad          #+#    #+#             */
-/*   Updated: 2024/09/29 01:00:59 by aennaqad         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:49:26 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_tokens	*parser(t_tokens *tokens)
 	while (var.curr)
 	{
 		if (var.curr->flag == 0 && var.curr->data[0] == '$'
-			&& var.curr->data[1] == '\0')
+			&& var.curr->data[1] == '\0' && var.curr->next)
 			var.curr = var.curr->next;
 		if (var.curr && var.curr->flag != 1
 			&& var.curr->flag != 3 && var.curr->flag != 2)

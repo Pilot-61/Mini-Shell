@@ -92,3 +92,15 @@ bash-3.2$
 --> minishell : ""
 --> minishell : ''
 --> minishell : 
+
+
+bash-3.2$  << a << a |> << b
+bash: syntax error near unexpected token `<<'
+> a
+> a
+
+--> minishell : << a << b |> << b 
+bash: syntax error near unexpected token `<<'
+> a
+> b
+bash-3.2$ 

@@ -6,11 +6,17 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:31:26 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/09/27 02:55:10 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:22:53 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+void	err_exit(char *msg)
+{
+	perror(msg);
+	exit(EXIT_FAILURE);
+}
 
 pid_t	safe_fork(void)
 {

@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 04:09:55 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/09/28 23:29:54 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:11:10 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,23 @@ void	export_single_arg(t_env **en, char *arg)
 	(1) && (lstaddb_env(en, lstnew_env(k, v)), free(k), free(v), 0);
 }
 
+int	is_valid_export(char *arg)
+{
+	int	i;
+
+	i = 0;
+	if (!isalpha(arg[i]) && arg[i] != '_')
+		return (0);
+	i++;
+	while (arg[i] && arg[i] != '=')
+	{
+		if (!ft_isalnum(arg[i]) && arg[i] != '_')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	export_multiple_args(t_env **en, char **args)
 {
 	int	i;
@@ -48,7 +65,16 @@ void	export_multiple_args(t_env **en, char **args)
 	i = 0;
 	while (args[i])
 	{
-		export_single_arg(en, args[i]);
+		if (args[i][0] == '\0' || args[i][0] == '='
+			|| !is_valid_export(args[i]))
+		{
+			ft_putstr_fd("minishell: export: `", 2);
+			ft_putstr_fd(args[i], 2);
+			ft_putstr_fd("': not a valid identifier\n", 2);
+			ft_exit_status(1, 1);
+		}
+		else
+			export_single_arg(en, args[i]);
 		i++;
 	}
 }

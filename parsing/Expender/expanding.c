@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 16:15:48 by aennaqad          #+#    #+#             */
-/*   Updated: 2024/10/01 19:27:57 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:48:50 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ static void	expnad_env_word(char *arg, t_var *var, char **env)
 		k++;
 	var->exp.var_name = ft_strndup(&arg[var->ex + 1], k - var->ex - 1);
 	var->exp.var_val = find_val(var->exp.var_name, env);
+	if (!var->exp.var_val)
+		var->exp.var_val = ft_strdup("\x03");
 	if (var->exp.var_val)
 		var->exp.final_arg = ft_strjoin(var->exp.final_arg, var->exp.var_val);
-	else
-		var->exp.final_arg = ft_strdup("\x03");
 	var->ex = k - 1;
 }
 
@@ -83,9 +83,9 @@ char	*expand_dlr_args(char *arg, char **env)
 	t_var	var;
 
 	intial_data(&var);
-	if (*arg == '$' && (*(arg + 1) >= '1' 
-			&& *(arg + 1) <= '9') 
-			&& *(arg + 2) != '\0')
+	if (*arg == '$' && (*(arg + 1) >= '1'
+			&& *(arg + 1) <= '9')
+		&& *(arg + 2) != '\0')
 		arg += 2;
 	if (!ft_strncmp(arg, "$", 2))
 		return (var.exp.final_arg = ft_strdup("$"), var.exp.final_arg);

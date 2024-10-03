@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 02:57:26 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/09/28 19:28:51 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/03 21:17:32 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,14 @@ int	exit_many_args(t_cmd *arg)
 	{
 		if (is_numeric(arg->args[1]))
 		{
-			printf("minishell: exit: too many arguments\n");
+			ft_putstr_fd("minishell: exit: too many arguments\n", 2);
 			return (1);
 		}
 		else
 		{
-			printf("minishell: exit: %s: numeric argument required\n",
-				arg->args[1]);
+			ft_putstr_fd("minishell: exit: ", 2);
+			ft_putstr_fd(arg->args[1], 2);
+			ft_putstr_fd(": numeric argument required\n", 2);
 			exit(255);
 		}
 	}
@@ -83,8 +84,9 @@ void	exit_shell(t_env *env, t_cmd *arg)
 			exit_code = atoi(arg->args[1]);
 		else
 		{
-			printf("minishell: exit: %s: numeric argument required\n",
-				arg->args[1]);
+			ft_putstr_fd("minishell: exit: ", 2);
+			ft_putstr_fd(arg->args[1], 2);
+			ft_putstr_fd(": numeric argument required\n", 2);
 			exit_code = 255;
 		}
 	}

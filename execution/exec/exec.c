@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 07:25:18 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/10/02 13:46:12 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:20:13 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*find_command_in_path(const char *cmd, t_env *g_env)
 
 	if ((cmd[0] == '.' && cmd[1] == '/' ) || cmd[0] == '/')
 	{
-		if (access(cmd, X_OK | F_OK) == 0)
+		if (access(cmd, F_OK) == 0)
 			return (ft_strdup(cmd));
 		return (NULL);
 	}
@@ -67,23 +67,25 @@ char	*find_command_in_path(const char *cmd, t_env *g_env)
 
 void	execution(t_cmd *command, char **envp, t_env *env)
 {
-	char	*full_path;
+	char		*full_path;
 
+	check_if_directory(command);
 	full_path = find_command_in_path(command->cmd, env);
 	if (!full_path)
-	{
-		printf("minishell: %s: command not found\n", command->cmd);
-		ft_exit_status(127, 1);
-		exit(127);
-	}
+		return (cmd_not_found(command->cmd));
 	if (execve(full_path, command->args, envp) == -1)
 	{
 		if (ft_strcmp(command->cmd, "") == 0)
-			printf("minishell: %s: command not found\n", command->cmd);
+		{
+			ft_putstr_fd("minishell: ", 2);
+			ft_putstr_fd(command->args[0], 2);
+			ft_putstr_fd(": command not found\n", 2);
+			ft_exit_status(127, 1);
+		}
+		else if (access(command->cmd, X_OK) == 0)
+			return ;
 		else
-			printf("minishell: %s: %s\n", command->cmd, strerror(errno));
-		ft_exit_status(126, 1);
-		exit(126);
+			errno_msg(command->cmd);
 	}
 }
 
@@ -92,7 +94,7 @@ void	exec_cmd(t_cmd *command, char **env, t_env *envp)
 	if (command->cmd == NULL)
 	{
 		ft_exit_status(1, 1);
-		exit(1);
+		return ;
 	}
 	execution(command, env, envp);
 }

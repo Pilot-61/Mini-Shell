@@ -6,13 +6,21 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:27:18 by aennaqad          #+#    #+#             */
-/*   Updated: 2024/10/02 13:47:27 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:47:58 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
+void	check_ac(int ac)
+{
+	if (ac != 1)
+	{
+		ft_putstr_fd("minishell: minishell: No such file or directory", 2);
+		ft_exit_status(127, 1);
+		exit(127);
+	}
+}
 
 int	main(int ac, char **av, char **env)
 {
@@ -20,29 +28,22 @@ int	main(int ac, char **av, char **env)
 
 	(void)av;
 	g_sig_v = 0;
-	if (ac != 1)
-	{
-		printf("minishell: minishell: No such file or directory");
-		ft_exit_status(127, 1);
-		exit(127);
-	}
+	check_ac(ac);
 	var.envp = envinit(env);
 	while (isatty(0))
 	{
 		handel_sig();
+		g_sig_v = 0;
 		var.line = readline("--> minishell : ");
 		var.cmd_list = the_input(var.line, var.envp);
-		if (!var.cmd_list)
+		if (!var.cmd_list || g_sig_v == 1)
 		{
 			free(var.line);
 			continue ;
 		}
-		g_sig_v = 1;
-		// printList_tcmd(var.cmd_list);
 		tcgetattr(0, &var.term);
 		exec(var.cmd_list, &var.envp);
 		tcsetattr(1, 0, &var.term);
-		g_sig_v = 0;
 		free(var.line);
 		ft_malloc(0, 2);
 	}

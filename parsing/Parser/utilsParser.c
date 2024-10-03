@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilsParser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aennaqad <aennaqad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:33:05 by aennaqad          #+#    #+#             */
-/*   Updated: 2024/09/29 01:44:51 by aennaqad         ###   ########.fr       */
+/*   Updated: 2024/10/03 21:13:58 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	handle_ambguis(t_tokens *prev, char *to_exp, int c)
 	{
 		if (!to_exp || c > 1 || !ft_strcmp(to_exp, "\x03"))
 		{
-			printf("abguis \n");
+			ft_putstr_fd("abguis \n", 2);
 			return (0);
 		}
 	}

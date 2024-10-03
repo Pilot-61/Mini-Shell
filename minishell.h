@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:17:11 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/10/01 20:25:34 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/03 22:43:46 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,10 @@ typedef struct s_var
 	t_tokens		*spc;
 	int				c;
 	int				ex;
-	// int			fd;
-	// int			i;
-	// char *file_name;
+	int				p_fd[2];
+	int				p_pipe;
 	int				was_sgl;
+	pid_t			pid;
 }				t_var;
 
 typedef struct parser
@@ -192,7 +192,7 @@ t_cmd		*the_input(char *line, t_env *env);
 void		create_add_likedlist(t_tokens **head,
 				char *val, char *type, int flag);
 t_redr		*create_red_node(char *red, char *type);
-void	printList_tcmd(t_cmd *lst);
+void		printList_tcmd(t_cmd *lst);
 void		next_skip_spaces(t_tokens **curr);
 int			handle_ambguis(t_tokens *prev, char *to_exp, int c);
 int			ft_isalnum(int c);
@@ -234,13 +234,13 @@ void		ft_strcat(char *dst, const char *src);
 void		ft_strcpy(char *dst, char *src);
 void		exec(t_cmd *cmd_list, t_env **envp);
 void		exec_cmd(t_cmd *combined, char **env, t_env *envp);
-void		exec_pip(t_cmd *commands, int command_count, t_env *env);
+void		exec_pip(t_cmd *commands, int command_count, t_env *env, int *flag);
 char		*my_split(char *str, const char *delim);
 int			command_count(t_cmd *cmd_list);
 void		handle_redirections(t_redr *redirections);
 char		**env_to_array(t_env *envp);
 void		free_cmd_list(t_cmd *cmd_list);
-t_tokens	*parse_heredock(t_tokens *line, char **env);
+void		parse_heredock(t_tokens *line, char **env);
 void		err_exit(char *msg);
 void		safe_waitpid(pid_t pid, int options);
 void		safe_close(int fd);
@@ -264,4 +264,8 @@ char		*ft_strdup2(const char *s1);
 char		*ft_strjoin2(char const *s1, char const *s2);
 void		ex_var(t_env *existing, char *k, char *v, int apnd);
 void		parse_arg(char *arg, char **k, char **v, int *apnd);
+void		ft_putstr_fd(char *s, int fd);
+void		check_if_directory(t_cmd *command);
+void		cmd_not_found(char *cmd);
+void		errno_msg(char *cmd);
 #endif
