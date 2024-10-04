@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:17:11 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/10/03 22:43:46 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/04 17:40:35 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,4 +268,6 @@ void		ft_putstr_fd(char *s, int fd);
 void		check_if_directory(t_cmd *command);
 void		cmd_not_found(char *cmd);
 void		errno_msg(char *cmd);
+long		my_atoi(char *str);
+int			exit_code_check(int exit_code);
 #endif

@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 16:44:55 by aennaqad          #+#    #+#             */
-/*   Updated: 2024/10/03 20:56:52 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/04 16:49:20 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ int	handle_env(t_tokens *curr, t_tokens **new_head, t_tokens *prev, char **env)
 	c = 0;
 	var.to_exp = expand_dlr_args(curr->data, env);
 	intial_data(&var);
-	if (!handle_ambguis(prev, var.to_exp, c))
-		return (0);
-	else if (var.to_exp)
+	if (var.to_exp)
 	{
 		var.dbl_char = ft_split(var.to_exp, ' ');
 		handle_space_env(new_head, &var, &c);
 	}
+	if (!handle_ambguis(prev, var.to_exp, c))
+		return (0);
 	return (1);
 }
 

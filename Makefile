@@ -6,13 +6,12 @@
 #    By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/13 16:24:40 by aennaqad          #+#    #+#              #
-#    Updated: 2024/10/03 22:51:51 by mes-salh         ###   ########.fr        #
+#    Updated: 2024/10/04 17:47:44 by mes-salh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS =  -Wall -Werror -Wextra #-fsanitize=address -g
-# -fsanitize=address -g
+CFLAGS =  -Wall -Werror -Wextra -fsanitize=address -g
 RM = rm -rf
 SRCS = 	parsing/syntaxe_cheks/utils_libft.c \
 			parsing/syntaxe_cheks/utils_libft_two.c \
@@ -41,9 +40,8 @@ SRCS = 	parsing/syntaxe_cheks/utils_libft.c \
 			execution/built-in/export.c execution/built-in/unset.c execution/built-in/exit.c \
 			execution/exec/exec.c execution/exec/helpers.c execution/exec/pipex.c execution/exec/helpers2.c execution/execution.c \
 			execution/exec/redir.c execution/exec/helpers3.c execution/exec/safe_syscall.c  execution/built-in/export2.c execution/tools.c \
-			execution/built-in/export_tools.c execution/exec/helpers4.c
+			execution/built-in/export_tools.c execution/exec/helpers4.c execution/built-in/ft_atoi.c
 
-# Object files
 OBJS = $(SRCS:.c=.o)
 
 READLINE_L = $(shell brew --prefix readline)/lib
@@ -66,9 +64,6 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
-
-go: all clean
-	clear && ./$(NAME)
 
 re: fclean all
 

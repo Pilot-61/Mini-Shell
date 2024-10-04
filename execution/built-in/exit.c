@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 02:57:26 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/10/03 21:17:32 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/04 17:48:50 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	ft_isdigit(int c)
 
 int	is_numeric(const char *str)
 {
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
 	if (*str == '-' || *str == '+')
 		str++;
 	if (!*str)
@@ -81,7 +83,7 @@ void	exit_shell(t_env *env, t_cmd *arg)
 	else if (arg->args[1])
 	{
 		if (is_numeric(arg->args[1]))
-			exit_code = atoi(arg->args[1]);
+			exit_code = my_atoi(arg->args[1]);
 		else
 		{
 			ft_putstr_fd("minishell: exit: ", 2);
@@ -91,5 +93,5 @@ void	exit_shell(t_env *env, t_cmd *arg)
 		}
 	}
 	free_env(&env);
-	exit(exit_code);
+	exit(exit_code_check(exit_code));
 }

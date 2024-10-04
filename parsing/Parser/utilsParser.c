@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:33:05 by aennaqad          #+#    #+#             */
-/*   Updated: 2024/10/03 21:13:58 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/04 16:51:18 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ int	handle_ambguis(t_tokens *prev, char *to_exp, int c)
 {
 	if (prev->flag == 1)
 	{
-		if (!to_exp || c > 1 || !ft_strcmp(to_exp, "\x03"))
+		if (c > 1 || !ft_strcmp(to_exp, "\x03"))
 		{
-			ft_putstr_fd("abguis \n", 2);
+			ft_putstr_fd("ambiguous \n", 2);
 			return (0);
 		}
 	}
