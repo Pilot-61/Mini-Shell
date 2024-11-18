@@ -53,11 +53,14 @@ Mini-Shell is a custom implementation of a Unix shell, designed to mimic core fu
 ### Compilation
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/Pilot-61/Mini-Shell.git
+```
+```bash
 
 # Navigate to project directory
 cd Mini-Shell
-
+```
+```bash
 # Compile the project
 make
 ```
