@@ -45,6 +45,10 @@ Mini-Shell is a custom implementation of a Unix shell, designed to mimic core fu
 - gcc/cc compiler
 - Make
 - Readline library (installed via Homebrew: `brew install readline`)
+- setup HomeBrew :
+  ```bash
+  curl -fsSL https://rawgit.com/gcamerli/42brew/master/set.sh | zsh
+  ```
 
 ### Compilation
 ```bash
