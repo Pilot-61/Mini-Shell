@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 16:15:00 by aennaqad          #+#    #+#             */
-/*   Updated: 2024/10/03 22:50:19 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/05 14:32:46 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,28 @@ void	intial_data(t_var *var)
 	var->in_sngl_qts = 0;
 }
 
+void	intial_data2(t_var *var)
+{
+	var->k = 0;
+	var->i = 0;
+	var->j = -1;
+}
+
+void	handle_del(char **del, t_tokens **curr)
+{
+	if (*curr && (*curr)->join_mode == 777)
+		*del = ft_strdup(remove_dollar((*curr)->data));
+	else if (*curr)
+		*del = ft_strdup((*curr)->data);
+}
+
 int	handle_herdoc_del(t_tokens **curr, char **env, int fd, char *file_name)
 {
-	char	*l;
+	char		*l;
+	char		*del;
 
 	l = NULL;
+	handle_del(&del, curr);
 	if ((*curr) && ((*curr)->flag == 0 || (*curr)->flag == 550))
 	{
 		while ('x')
@@ -47,7 +64,7 @@ int	handle_herdoc_del(t_tokens **curr, char **env, int fd, char *file_name)
 			l = readline("> ");
 			if (!ttyname(0))
 				return (open(ttyname(2), O_RDWR), 0);
-			if (!ft_strcmp(l, (*curr)->data))
+			if (!ft_strcmp(l, del))
 				break ;
 			if (is_not_dlr((*curr)->data) && (*curr)->flag != 550)
 				expand_her(l, env, fd);
@@ -72,18 +89,4 @@ size_t	ft_strlen(const char *s)
 	while (s[i])
 		i++;
 	return (i);
-}
-
-int	ft_isalnum(int c)
-{
-	return ((c >= 'a' && c <= 'z')
-		|| (c >= 'A' && c <= 'Z')
-		|| (c >= 48 && c <= 57));
-}
-
-void	next_skip_spaces(t_tokens **curr)
-{
-	(*curr) = (*curr)->next;
-	while ((*curr) && (*curr)->flag == 3)
-		(*curr) = (*curr)->next;
 }

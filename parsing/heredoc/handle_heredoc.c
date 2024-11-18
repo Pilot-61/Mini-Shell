@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:57:26 by aennaqad          #+#    #+#             */
-/*   Updated: 2024/10/03 22:49:16 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/04 18:15:16 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	handle_signal(int sig)
 	{
 		close(0);
 		g_sig_v = 1;
+		ft_exit_status(1, 1);
 	}
 }
 

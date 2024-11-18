@@ -21,6 +21,41 @@ int	ft_exit_status(int exit, int type)
 	return (status);
 }
 
+int	space_in_begin(char *str)
+{
+	if (str[0] == 32)
+		return (1);
+	return (0);
+}
+
+char	*remove_dollar(char *str)
+{
+	t_var	var;
+	char	*word;
+
+	var.c = ft_strlen(str);
+	if (var.c == 1)
+		return (ft_strdup(""));
+	intial_data2(&var);
+	while (str[var.i])
+	{
+		if (str[var.i] == '$')
+			var.k++;
+		var.i++;
+	}
+	word = ft_malloc(((var.c - var.k) + 1), 1);
+	intial_data2(&var);
+	while (str[var.i])
+	{
+		if (str[var.i] == '$')
+			var.i++;
+		word[++var.j] = str[var.i];
+		var.i++;
+	}
+	word[++var.j] = '\0';
+	return (word);
+}
+
 t_cmd	*the_input(char *line, t_env *envp)
 {
 	t_tokens	*head_cmds;

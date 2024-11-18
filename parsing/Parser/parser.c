@@ -6,11 +6,12 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 16:44:55 by aennaqad          #+#    #+#             */
-/*   Updated: 2024/10/04 16:49:20 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/05 14:14:19 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+#include <stdio.h>
 
 void	handle_space_env(t_tokens **new_head, t_var *var, int *c)
 {

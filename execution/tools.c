@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 02:23:34 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/09/28 02:28:30 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/04 20:36:36 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_strdup2(const char *s1)
 	return (arr);
 }
 
-void	lstaddb_env(t_env **lst, t_env *news)
+void	lstad(t_env **lst, t_env *news)
 {
 	t_env	*last;
 

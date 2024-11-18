@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 23:43:08 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/10/03 22:18:30 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/18 19:19:48 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,17 @@ void	cd_error(char *temp)
 	ft_putstr_fd(temp, 2);
 	ft_putstr_fd(": No such file or directory\n", 2);
 	ft_exit_status(1, 1);
+}
+
+int8_t	check_temp(char *temp)
+{
+	if (temp == NULL)
+	{
+		ft_putstr_fd("minishell: cd: HOME not set\n", 2);
+		ft_exit_status(1, 1);
+		return (1);
+	}
+	return (0);
 }
 
 void	change_dir(char *temp, t_env **envp)
@@ -37,6 +48,8 @@ void	change_dir(char *temp, t_env **envp)
 	}
 	if (temp == NULL || *temp == '\0')
 		temp = getenv("HOME");
+	if (check_temp(temp))
+		return ;
 	if (chdir(temp) != 0)
 		return (cd_error(temp));
 	if (getcwd(new_pwd, sizeof(new_pwd)) == NULL)
@@ -53,7 +66,7 @@ void	update_env(t_env **envp, const char *key, const char *value)
 	env = *envp;
 	while (env)
 	{
-		if (strcmp(env->key, key) == 0)
+		if (ft_strcmp(env->key, (char *)key) == 0)
 		{
 			free(env->value);
 			env->value = ft_strdup2(value);
@@ -61,5 +74,5 @@ void	update_env(t_env **envp, const char *key, const char *value)
 		}
 		env = env->next;
 	}
-	lstaddb_env(envp, lstnew_env(ft_strdup(key), ft_strdup(value)));
+	lstad(envp, lstnew_env(ft_strdup(key), ft_strdup(value)));
 }

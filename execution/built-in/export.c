@@ -6,55 +6,60 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 04:09:55 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/10/03 22:11:10 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/18 19:23:34 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	export_single_arg(t_env **en, char *arg)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
-	char	*k;
-	char	*v;
-	int		apnd;
-	t_env	*existing;
+	const char	*h;
+	const char	*n;
 
-	if (!ft_strchr(arg, '='))
+	if (!*needle)
+		return ((char *)haystack);
+	while (*haystack)
 	{
-		existing = *en;
-		while (existing)
+		h = haystack;
+		n = needle;
+		while (*h && *n && (*h == *n))
 		{
-			if (ft_strcmp(existing->key, arg) == 0)
-				return ;
-			existing = existing->next;
+			h++;
+			n++;
 		}
-		lstaddb_env(en, lstnew_env(ft_strdup(arg), ft_strdup("")));
-		return ;
+		if (!*n)
+			return ((char *)haystack);
+		haystack++;
 	}
-	(1) && (parse_arg(arg, &k, &v, &apnd), existing = *en, 0);
-	while (existing)
-	{
-		if (ft_strcmp(existing->key, k) == 0)
-			return (ex_var(existing, k, v, apnd));
-		existing = existing->next;
-	}
-	(1) && (lstaddb_env(en, lstnew_env(k, v)), free(k), free(v), 0);
+	return (NULL);
 }
 
 int	is_valid_export(char *arg)
 {
-	int	i;
+	t_var	var;
 
-	i = 0;
-	if (!isalpha(arg[i]) && arg[i] != '_')
-		return (0);
-	i++;
-	while (arg[i] && arg[i] != '=')
+	var.i = 0;
+	if (ft_strstr(arg, "+="))
 	{
-		if (!ft_isalnum(arg[i]) && arg[i] != '_')
+		var.plus_sign = ft_strstr(arg, "+=");
+		*(var).plus_sign = '\0';
+		if (!ft_isalpha(arg[var.i]) && arg[var.i] != '_')
 			return (0);
-		i++;
+		var.i++;
+		while (arg[var.i])
+		{
+			if (arg[var.i] == '=')
+				return (1);
+			if (!ft_isalnum(arg[var.i]) && arg[var.i] != '_')
+				return (0);
+			var.i++;
+		}
+		*(var).plus_sign = '+';
+		return (1);
 	}
+	if (!handle_plus_eq2(&var, arg))
+		return (0);
 	return (1);
 }
 

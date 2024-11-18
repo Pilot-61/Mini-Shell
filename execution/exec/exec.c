@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 07:25:18 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/10/03 22:20:13 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/05 00:34:37 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,10 @@ void	execution(t_cmd *command, char **envp, t_env *env)
 			ft_putstr_fd(command->args[0], 2);
 			ft_putstr_fd(": command not found\n", 2);
 			ft_exit_status(127, 1);
+			exit(127);
 		}
 		else if (access(command->cmd, X_OK) == 0)
-			return ;
+			exit(126);
 		else
 			errno_msg(command->cmd);
 	}
@@ -94,7 +95,7 @@ void	exec_cmd(t_cmd *command, char **env, t_env *envp)
 	if (command->cmd == NULL)
 	{
 		ft_exit_status(1, 1);
-		return ;
+		exit(1);
 	}
 	execution(command, env, envp);
 }

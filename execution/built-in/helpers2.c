@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:49:05 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/09/27 21:32:35 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/18 19:20:14 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ char	*trim_spaces(const char *str)
 	while (ft_isspace((unsigned char)*str))
 		str++;
 	if (*str == '\0')
-		return (strdup(""));
-	end = str + strlen(str) - 1;
+		return (ft_strdup2(""));
+	end = str + ft_strlen(str) - 1;
 	while (end > str && ft_isspace((unsigned char)*end))
 		end--;
 	len = end - str + 1;
@@ -40,16 +40,16 @@ void	split_command(char *input, char **cmd, char **arg)
 	char	*sp;
 
 	trim = trim_spaces(input);
-	sp = strchr(trim, ' ');
+	sp = ft_strchr(trim, ' ');
 	if (sp)
 	{
 		*sp = '\0';
-		*cmd = strdup(trim);
-		*arg = strdup(sp + 1);
+		*cmd = ft_strdup2(trim);
+		*arg = ft_strdup2(sp + 1);
 	}
 	else
 	{
-		*cmd = strdup(trim);
+		*cmd = ft_strdup2(trim);
 		*arg = NULL;
 	}
 }

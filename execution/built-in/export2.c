@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 01:48:20 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/10/03 21:17:52 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:48:59 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	export_notargs(t_env **envp)
 	export_sort_alpha(&temp);
 	while (temp)
 	{
-		if (ft_strcmp(temp->value, "") != 0)
+		if (ft_strcmp(temp->value, "\x03") != 0)
 			printf("declare -x %s=\"%s\"\n", temp->key, temp->value);
 		else
 			printf("declare -x %s\n", temp->key);

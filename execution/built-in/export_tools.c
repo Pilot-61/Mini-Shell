@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 20:21:45 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/09/28 20:24:51 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/04 22:07:43 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	parse_arg(char *arg, char **k, char **v, int *apnd)
 
 	*apnd = 0;
 	equals_pos = ft_strchr(arg, '=');
+	if (equals_pos == NULL)
+		return ;
 	if (equals_pos > arg && *(equals_pos - 1) == '+')
 	{
 		*apnd = 1;

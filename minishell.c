@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:27:18 by aennaqad          #+#    #+#             */
-/*   Updated: 2024/10/04 17:32:47 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/04 22:52:48 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,23 @@ int	main(int ac, char **av, char **env)
 	g_sig_v = 0;
 	check_ac(ac);
 	var.envp = envinit(env);
-	while (isatty(0))
+	while ('X')
 	{
+		if (!isatty(0))
+			break ;
 		handel_sig();
 		g_sig_v = 0;
 		var.line = readline("--> minishell : ");
+		if (!var.line)
+			break ;
 		var.cmd_list = the_input(var.line, var.envp);
 		if (!var.cmd_list || g_sig_v == 1)
 		{
 			free(var.line);
 			continue ;
 		}
-		tcgetattr(0, &var.term);
-		exec(var.cmd_list, &var.envp);
-		tcsetattr(1, 0, &var.term);
-		free(var.line);
-		ft_malloc(0, 2);
+		(1) && (tcgetattr(0, &var.term), exec(var.cmd_list, &var.envp),
+			tcsetattr(1, 0, &var.term), free(var.line), ft_malloc(0, 2), 0);
 	}
 	return (0);
 }

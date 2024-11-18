@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:27:38 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/10/03 21:23:00 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/18 19:23:31 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ t_env	*envinit(char **env)
 	head = NULL;
 	if (!*env)
 	{
-		lstaddb_env(&head, lstnew_env("PWD", "/"));
-		lstaddb_env(&head, lstnew_env("SHLVL", "1"));
-		lstaddb_env(&head, lstnew_env("_", "usr/bin/env"));
-		lstaddb_env(&head,
+		lstad(&head, lstnew_env("PWD", "/"));
+		lstad(&head, lstnew_env("SHLVL", "1"));
+		lstad(&head, lstnew_env("_", "usr/bin/env"));
+		lstad(&head,
 			lstnew_env("PATH", "/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."));
 		return (head);
 	}
@@ -34,7 +34,7 @@ t_env	*envinit(char **env)
 		splited = ft_split2(env[i], '=');
 		if (!splited)
 			return (NULL);
-		lstaddb_env(&head, lstnew_env(splited[0], splited[1]));
+		lstad(&head, lstnew_env(splited[0], splited[1]));
 		ft_free(splited);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: aennaqad <aennaqad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:41:23 by aennaqad          #+#    #+#             */
-/*   Updated: 2024/09/28 22:02:32 by aennaqad         ###   ########.fr       */
+/*   Updated: 2024/10/05 12:59:09 by aennaqad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,6 @@ void	free_dbl_char(char **split)
 		i++;
 	}
 	free(split);
-}
-
-int	space_in_begin(char *str)
-{
-	if (str[0] == 32)
-		return (1);
-	return (0);
 }
 
 int	space_at_end(char *str)
@@ -52,27 +45,37 @@ int	is_not_spic(char *str)
 	return (1);
 }
 
+void	add_flags(t_var *var)
+{
+	if (var->jnd && var->c > 1)
+		var->newa->join_mode = 777;
+	if (var->is_sgl)
+		var->newa->flag = 550;
+}
+
 void	join_token(t_tokens **new_head, t_tokens **curr)
 {
-	char		*joined;
-	t_tokens	*newa;
-	int			is_sgl;
+	t_var			var;
 
-	is_sgl = 0;
+	var.is_sgl = 0;
+	var.jnd = 0;
+	var.c = 0;
 	if (!ft_strcmp((*curr)->data, "\x03"))
 		return ;
-	joined = ft_strdup("");
+	var.joined = ft_strdup("");
 	while (*curr)
 	{
 		if ((*curr)->flag == 3 || (*curr)->flag == 1 || (*curr)->flag == 2)
 			break ;
 		if ((*curr)->flag == 550 || !ft_strcmp((*curr)->data, ""))
-			is_sgl = 1;
-		joined = ft_strjoin(joined, (*curr)->data);
+			var.is_sgl = 1;
+		if (!ft_strcmp((*curr)->data, "$"))
+			var.jnd = 1;
+		var.joined = ft_strjoin(var.joined, (*curr)->data);
+		var.c++;
 		(*curr) = (*curr)->next;
 	}
-	newa = createnode(joined, "JOINED", 0);
-	if (is_sgl)
-		newa->flag = 550;
-	ft_tkn_add_back(new_head, newa);
+	var.newa = createnode(var.joined, "JOINED", 0);
+	add_flags(&var);
+	ft_tkn_add_back(new_head, var.newa);
 }

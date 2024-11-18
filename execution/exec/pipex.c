@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:46:59 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/10/04 17:33:05 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/04 18:36:09 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	cprocess(t_cmd *current_cmd, int p_pipe, int p_fd[2], t_env *env)
 		exit(EXIT_SUCCESS);
 	}
 	exec_cmd(current_cmd, env_to_array(env), env);
-	exit(EXIT_FAILURE);
 }
 
 void	wait_for_child_processes(int command_count, int pid)

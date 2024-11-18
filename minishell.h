@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:17:11 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/10/04 17:40:35 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/05 14:36:08 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <termios.h>
+# include <stddef.h>
 
 int	g_sig_v;
 
@@ -117,6 +118,16 @@ typedef struct s_var
 	int				p_pipe;
 	int				was_sgl;
 	pid_t			pid;
+	char			*ke;
+	char			*v;
+	int				apnd;
+	t_env			*existing;
+	char			*plus_sign;
+	char			*new_value;
+	char			*joined;
+	t_tokens		*newa;
+	int				is_sgl;
+	int				jnd;
 }				t_var;
 
 typedef struct parser
@@ -151,6 +162,7 @@ void		add_back(t_tokens **head, char *value, char *type, int flag);
 char		*to_linkd_list(t_tokens **head, char *value,
 				char *type, char *start);
 void		intial_data(t_var *var);
+void		intial_data2(t_var *var);
 t_tokens	*tokenize(char *input);
 t_cmd		*parse_commands(t_tokens *tokens);
 t_tokens	*parser_commands(t_tokens	*head, char **env);
@@ -221,7 +233,7 @@ int			is_buit_in(t_cmd *command, t_env **envp);
 void		echo(char *arg);
 void		export(t_env **env, char **arg);
 void		ft_lstdelone(t_env *lst, void (*del)(void*));
-void		unset(t_env **envp, char *arg);
+void		unset(t_env **envp, char **args);
 void		change_dir(char *temp, t_env **envp);
 void		update_env(t_env **envp, const char *key, const char *value);
 void		export_notargs(t_env **envp);
@@ -259,7 +271,7 @@ void		my_dup2(int old_stdin, int old_stdout);
 int			built_in_check(char *command);
 void		*ft_malloc(size_t size, int type);
 t_env		*lstnew_env(char *key, char *value);
-void		lstaddb_env(t_env **lst, t_env *news);
+void		lstad(t_env **lst, t_env *news);
 char		*ft_strdup2(const char *s1);
 char		*ft_strjoin2(char const *s1, char const *s2);
 void		ex_var(t_env *existing, char *k, char *v, int apnd);
@@ -269,5 +281,14 @@ void		check_if_directory(t_cmd *command);
 void		cmd_not_found(char *cmd);
 void		errno_msg(char *cmd);
 long		my_atoi(char *str);
-int			exit_code_check(int exit_code);
+int			exit_code_check(int exit_code);;
+int			ft_isalpha(int c);
+char		*ft_strstr(const char *haystack, const char *needle);
+void		export_notargs(t_env **envp);
+void		export_sort_alpha(t_env **envp);
+void		handle_plus_eq(t_var *var, char *arg);
+void		export_single_arg(t_env **en, char *arg);
+int			handle_plus_eq2(t_var *var, char *arg);
+void		print_tokens(t_tokens *head);
+char		*remove_dollar(char *str);
 #endif

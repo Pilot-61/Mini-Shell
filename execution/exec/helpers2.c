@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 00:38:50 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/09/27 22:25:35 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/05 14:08:12 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	copy_env_to_array(t_env *envp, char **env, int key_len, int value_len)
 	while (temp)
 	{
 		key_len = ft_strlen(temp->key);
+		if (!ft_strcmp(temp->value, "\x03"))
+			temp->value = ft_strdup("");
 		value_len = ft_strlen(temp->value);
 		env[count] = ft_malloc((key_len + value_len + 2), 1);
 		if (!env[count])

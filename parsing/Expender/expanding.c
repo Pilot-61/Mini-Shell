@@ -6,12 +6,13 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 16:15:48 by aennaqad          #+#    #+#             */
-/*   Updated: 2024/10/03 22:48:50 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/05 14:00:50 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 #include <errno.h>
+#include <stdio.h>
 #include <sys/_types/_size_t.h>
 
 static char	*find_val(char *var, char **env)
@@ -37,15 +38,20 @@ static void	expnad_env_word(char *arg, t_var *var, char **env)
 {
 	int		k;
 
-	k = 0;
 	k = var->ex + 1;
 	if (arg[var->ex + 1] == '\'')
 		var->exp.final_arg = ft_strdup("$");
+	if (arg[k] == '?')
+	{
+		var->exp.final_arg = ft_itoa(ft_exit_status(0, 0));
+		var->ex += 1;
+		return ;
+	}
 	while ((arg[k] == '_' || ft_isalnum(arg[k])) && arg[k] != '\'')
 		k++;
 	var->exp.var_name = ft_strndup(&arg[var->ex + 1], k - var->ex - 1);
 	var->exp.var_val = find_val(var->exp.var_name, env);
-	if (!var->exp.var_val)
+	if (!var->exp.var_val || !ft_strcmp(var->exp.var_val, "\x03"))
 		var->exp.var_val = ft_strdup("\x03");
 	if (var->exp.var_val)
 		var->exp.final_arg = ft_strjoin(var->exp.final_arg, var->exp.var_val);
@@ -68,7 +74,7 @@ char	*handle_odd_even_env(char *arg, t_var *var)
 			var->i++;
 		if (arg[var->i] == '$')
 			var->c++;
-		else
+		else if (arg[var->i] != '\'' && arg[var->i] != '\"')
 			break ;
 		var->i++;
 	}
@@ -89,9 +95,6 @@ char	*expand_dlr_args(char *arg, char **env)
 		arg += 2;
 	if (!ft_strncmp(arg, "$", 2))
 		return (var.exp.final_arg = ft_strdup("$"), var.exp.final_arg);
-	if (!ft_strcmp(arg, "$?"))
-		return (var.exp.final_arg = ft_itoa(ft_exit_status(0, 0))
-			, var.exp.final_arg);
 	if (handle_odd_even_env(arg, &var))
 		return (var.exp.final_arg);
 	while (arg[++var.ex])

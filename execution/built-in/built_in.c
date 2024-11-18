@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 00:27:13 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/10/03 20:40:00 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/04 23:56:33 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,22 @@ char	*cargs(char **arg)
 	return (result);
 }
 
+int	env_check(t_cmd *c, char *cmd)
+{
+	if (ft_strcmp(cmd, "env") == 0)
+	{
+		if (c->args[1] != NULL)
+		{
+			ft_putstr_fd("env: ", 2);
+			ft_putstr_fd(c->args[1], 2);
+			ft_putstr_fd(": No such file or directory\n", 2);
+		}
+		else
+			return (1);
+	}
+	return (0);
+}
+
 int	is_buit_in(t_cmd *c, t_env **envp)
 {
 	char	*cmd;
@@ -47,7 +63,7 @@ int	is_buit_in(t_cmd *c, t_env **envp)
 	t_cmd	*t;
 
 	(1) && (t = c, cmd = ft_strdup(t->cmd), arg = cargs(&t->args[1]), 0);
-	if (ft_strcmp(cmd, "env") == 0)
+	if (env_check(c, cmd))
 		return (printenv(*envp), 1);
 	else if (ft_strcmp(cmd, "pwd") == 0)
 		return (get_cwd(), 1);
@@ -63,7 +79,7 @@ int	is_buit_in(t_cmd *c, t_env **envp)
 			return (export(envp, &c->args[1]), 1);
 	}
 	else if (ft_strcmp(cmd, "unset") == 0)
-		return (unset(envp, arg), 1);
+		return (unset(envp, &c->args[1]), 1);
 	else if (ft_strcmp(cmd, "exit") == 0)
 		return (exit_shell(*envp, t), 1);
 	return (0);
